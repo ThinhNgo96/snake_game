@@ -327,6 +327,7 @@ TSWLatexianTemp*
 *.la
 *.a
 *.lib
+*.pdf
 
 # Executables
 *.exe
