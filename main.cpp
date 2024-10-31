@@ -17,6 +17,13 @@ const int speedIncrement = 10;
 enum Direction { STOP = 0, LEFT, RIGHT, UP, DOWN };
 Direction dir;
 
+char fruitC = '\235';
+char headC = '@';
+char bodyC = 'o';
+char tailC = '*';
+char wallC = '=';
+char sideWallC = '|';
+
 int x, y, fruitX, fruitY, score;
 bool gameOver;
 vector<pair<int, int>> snakeBody;
@@ -51,40 +58,37 @@ void drawWalls() {
     // draw the top and bottom walls
     for (int i = 0; i < width + 1; i++) {
         gotoXY(i, 0);
-        cout << "#";
+        cout << wallC;
     }
     for (int i = 0; i < width + 1; i++) {
         gotoXY(i, height + 1);
-        cout << "#";
+        cout << wallC;
     }
 
     // draw side walls
     for (int i = 1; i < height + 1; i++) {
         gotoXY(0, i);
-        cout << "#";
+        cout << sideWallC;
         gotoXY(width, i);
-        cout << "#";
+        cout << sideWallC;
     }
 }
 
 void setup() {
     gameOver = false;
 
-    do {
-        x = rand() % (width - 2) + 1;   // Range from 1 to width-2
-        y = rand() % (height - 2) + 1;  // Range from 1 to height-2
-    } while (x <= 0 || x >= width - 1 || y <= 0 || y >= height - 1);
+    x = rand() % (width - 2) + 1;
+    y = rand() % (height - 2) + 1;
 
-    // Initialize fruit position, ensuring it doesn't overlap with the snake's
-    // initial position
+    // iinitialize fruit position, ensuring it doesn't overlap with the snake's
     do {
-        fruitX = rand() % (width - 2) + 1;   // Range from 1 to width-2
-        fruitY = rand() % (height - 2) + 1;  // Range from 1 to height-2
+        fruitX = rand() % (width - 2) + 1;
+        fruitY = rand() % (height - 2) + 1;
     } while (fruitX == x && fruitY == y);
 
     score = 0;
 
-    // Start with a snake of length 1
+    // start with a snake of length 1
     snakeBody.reserve(width * height);
     snakeBody.clear();
     snakeBody.push_back({x, y});
@@ -96,22 +100,22 @@ void setup() {
 void draw() {
     // Draw the fruit
     gotoXY(fruitX, fruitY);
-    cout << "@";
+    cout << fruitC;
 
     // head
     gotoXY(snakeBody[0].first, snakeBody[0].second);
-    cout << "0";
+    cout << headC;
 
     // tail
     if (snakeBody.size() > 1) {
         // replace old head with "o"
         gotoXY(snakeBody[1].first, snakeBody[1].second);
-        cout << "o";
+        cout << bodyC;
 
         int tailX = snakeBody.back().first;
         int tailY = snakeBody.back().second;
         gotoXY(tailX, tailY);
-        cout << ".";
+        cout << tailC;
     }
 
     // print out the score, so users know how good they are
@@ -166,7 +170,8 @@ void moveSnake(Direction dir) {
     // the new head of the snake is at (x, y) based on the direction, shifting
     // the rest of the body to the right
     rotate(snakeBody.rbegin(), snakeBody.rbegin() + 1, snakeBody.rend());
-    if (snakeOccupied.count({x, y}) > 0) {
+
+    if (snakeOccupied.count({x, y})) {
         gameOver = true;
     }
 
@@ -176,9 +181,9 @@ void moveSnake(Direction dir) {
 
 void spawnNewFuit() {
     do {
-        fruitX = (rand() % (width - 2)) + 1;   // Avoids edge positions
-        fruitY = (rand() % (height - 2)) + 1;  // Avoids edge positions
-    } while (snakeOccupied.count({fruitX, fruitY}) > 0);
+        fruitX = (rand() % (width - 2)) + 1;  // avoids edge positions
+        fruitY = (rand() % (height - 2)) + 1;
+    } while (snakeOccupied.count({fruitX, fruitY}));
 }
 
 // update game state, check if the game is over.
