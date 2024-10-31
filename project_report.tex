@@ -1,0 +1,334 @@
+\documentclass[12pt]{report}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry} 
+
+\usepackage[vietnamese,english]{babel}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{graphicx}
+
+\usepackage[utf8]{vietnam}
+\usepackage[utf8]{inputenc}
+
+\usepackage{helvet}
+\usepackage{courier}
+
+\usepackage{fourier}   
+\usepackage[T5]{fontenc} 
+
+
+\title{ĐỒ ÁN CUỐI KỲ \\ Triển khai và phân tích trò chơi rắn săn mồi}
+\author{Nhóm \\ 4T1M}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+    Đồ án này trình bày về thiết kế và cách triển khai trò chơi con rắn (command-line game) viết trên C++, \
+    được thiết kế chủ yếu cho Windows. \
+    Trò chơi kết hợp các yếu tố cơ bản như vẽ tường, tương tác với tường (chướng ngại vật), tăng tốc độ, tương tác với thao tác phím của người chơi,...\
+    Đặc biệt nhấn mạnh vào khả năng quản lý bộ nhớ và sử dụng cấu trúc dữ liệu phù hợp để tối ưu việc xử lý các tương tác.
+\end{abstract}
+
+\tableofcontents
+
+\chapter{Hợp đồng nhóm}
+Phần này nhóm muốn giới thiệu về nhóm, các thành viên, hợp đồng nhóm.
+
+\section{Tên nhóm}
+Tên nhóm: \textbf{4T1M} (\href{https://ss004e11cn1.slack.com/archives/C07T94K918U}{slack channel ss004-06})
+
+\section{Thành viên}
+Thành viên trong nhóm bao gồm:
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|l|c|}
+        \hline
+        \rule{0pt}{13pt} \textbf{MSSV}                     &
+        \rule{0pt}{13pt} \textbf{Họ Tên Đệm}               &
+        \multicolumn{1}{c|}{\rule{0pt}{13pt} \textbf{Tên}} &
+        \rule{0pt}{13pt} \textbf{Vai trò}                                                       \\
+        \hline
+        24730077                                           & Ngô Văn      & Tuấn   & Thành viên \\
+        24730067                                           & Lê Tấn       & Thành  & Thành viên \\
+        24730047                                           & Nguyễn Thanh & Minh   & Thành viên \\
+        24730058                                           & Thiên Phúc   & Trường & Thành viên \\
+        24730068                                           & Ngô Thanh    & Thịnh  & Thành viên \\
+        \hline
+    \end{tabular}
+    \caption{Danh sách thành viên và vai trò}
+    \label{tab:group_members}
+\end{table}
+
+
+\section{Nhiệm vụ của từng thành viên}
+\begin{itemize}
+    \item 24730077 - Ngô Văn Tuấn: % TODO
+    \item 24730067 - Lê Tấn Thành: % TODO
+    \item 24730047 - Nguyễn Thanh Minh: % TODO
+    \item 24730058 - Thiên Phúc Trường: % TODO
+    \item 24730068 - Ngô Thanh Thịnh: % TODO
+\end{itemize}
+
+\section{Tiêu chí và thang điểm / Rubric}
+\begin{table}[H]
+    \centering
+    \resizebox{0.9\textwidth}{!}{
+        \begin{tabularx}{\textwidth}{|p{60pt}|X|X|X|X|}
+            \hline
+            \rule{0pt}{13pt} \textbf{Tiêu chí}                                   &
+            \rule{0pt}{13pt} \textbf{Xuất sắc}                                   &
+            \rule{0pt}{13pt} \textbf{Tốt}                                        &
+            \rule{0pt}{13pt} \textbf{Tương đối}                                  &
+            \rule{0pt}{13pt} \textbf{Cần cải thiện}                                \\
+            \hline
+            Tích cực                                                             &
+            Tham gia vào hầu hết các hoạt động, khuyến khích các thành viên khác &
+            Thường xuyên tham gia, có ảnh hưởng tốt đến các thành viên khác      &
+            Tham gia không thường xuyên, ít đóng góp vào công việc chung         &
+            Hiếm khi tham gia                                                      \\
+            \hline
+            Giao tiếp                                                            &
+            Rõ ràng, chia sẻ các ý kiến rành mạch, hiệu quả                      &
+            Giao tiếp rõ ràng                                                    &
+            Còn gặp một số trở ngại khi nêu lên ý kiến của mình                  &
+            Gặp khó khăn trong việc giao tiếp                                      \\
+            \hline
+            Cộng tác                                                             &
+            Làm việc hiệu quả với mọi người, hỗ trợ trong nhóm                   &
+            Thường làm tốt việc được giao, hỗ trợ mục tiêu chung của nhóm        &
+            Thi thoảng có hỗ trợ các thành viên khác                             &
+            Gặp khó khăn khi làm việc nhóm, khi phục vụ mục tiêu chung             \\
+            \hline
+            Chất lượng công việc                                                 &
+            Công việc hoàn thành luôn có chất lượng cao, chính xác               &
+            Chất lượng công việc tốt, chỉ có một vài lỗi nhỏ                     &
+            Chất lượng công việc đáp ứng đủ, một số không chính xác yêu cầu      &
+            Gặp nhiều lỗi, chất lượng công việc thấp                               \\
+            \hline
+            Chủ động                                                             &
+            Thường xuyên chủ động đưa các ý kiến, ý tưởng mới                    &
+            Thường chủ động, đóng góp vào các ý kiến của thành viên khác         &
+            Hiếm khi chủ động, làm việc theo chỉ định                            &
+            Không chủ động và đóng góp ý kiến                                      \\
+            \hline
+        \end{tabularx}
+    }
+    \caption{Thang điểm đánh giá quá trình hoạt động nhóm}
+    \label{tab:teamwork_rubric}
+\end{table}
+
+\chapter{Không gian làm việc, thảo luận của nhóm}
+
+\section{Trao đổi, phân việc, thảo luận các ý kiến}
+Nhóm sử dụng Slack trong việc trao đổi, thảo luận: \href{https://ss004e11cn1.slack.com/archives/C07T94K918U}{channel ss004-06}
+\section{Quản lý code, xử lý các xung đột về code}
+Nhóm sử dụng Git để quản lý code, và Github là không gian để cùng nhau làm việc: \href{https://github.com/ThinhNgo96/snake_game}{Github link} \\
+Link sản phẩm: \href{https://github.com/ThinhNgo96/snake_game/releases}{Download Game}
+
+
+
+\chapter{Giới thiệu và hướng dẫn chơi game}
+
+\chapter{Tài liệu kĩ thuật}
+\section{Môi trường triển khai game}
+\subsection*{Hệ điều hành}
+\begin{itemize}
+    \item \textbf{Windows}: Sử dụng \texttt{MinGW-w64} cho việc compile.
+\end{itemize}
+
+\subsection*{Ngôn ngữ lập trình}
+\begin{itemize}
+    \item \textbf{C++}: các tương tác và xuất hình ảnh được thực hiện bằng ngôn ngữ C++.
+\end{itemize}
+
+\subsection*{Thư viện}
+\begin{itemize}
+    \item \textbf{conio.h}: Cho viện nhận thao tác phím từ user mà không ảnh hưởng tới main thread.
+    \item \textbf{Windows Console API}: Di chuyển con trỏ ở Windows console.
+    \item \textbf{Standard C++ Libraries}: Bao gồm các thư viện căn bản như \texttt{vector}, and \texttt{unordered\_map} để lưu trữ và xử lý dữ liệu của game
+\end{itemize}
+
+\subsection*{Công cụ}
+\begin{itemize}
+    \item \textbf{Compiler}: \texttt{g++} (từ MinGW-w64).
+    \item \textbf{Debugger}: \texttt{gdb} cho việc debug.
+    \item \textbf{IDE}: Visual Studio Code.
+\end{itemize}
+
+\subsection*{Build và chạy game}
+\textbf{Commands}: Chạy lệnh sau để build và chơi game:
+\begin{lstlisting}[language=bash]
+    g++ -g main.cpp -o snake.exe
+    ./snake.exe
+\end{lstlisting}
+
+\section{Chức năng chính của game}
+Game bao gồm các chức năng chính sau đây:
+\subsection*{1. Khỏi tạo game}
+\begin{itemize}
+    \item Vẽ bản đồ (tường)
+    \item Khơi tạo ví trí ban đầu cho rắn.
+    \item Tạo ngẫu nhiêu thức ăn trong vị trí của bản đồ, tránh va chạm với vị trí của rắn.
+\end{itemize}
+
+\subsection*{2. Di chuyển rắn, cho rắn ăn}
+\begin{itemize}
+    \item Rắn được di chuyển liên tục theo hướng được điểu khiển bởi người chơi (lên, xuống, trái, phải).
+    \item Khi rắn ăn được thức ăn, cơ thể sẽ dài ra, đồng thời tốc độ trườn cũng tăng lên, thêm phần thử thách cho người chơi.
+    \item Vị trí của rắn sẽ được cập nhập liên tục khi di chuyển.
+\end{itemize}
+
+\subsection*{3. Tạo thức ăn}
+\begin{itemize}
+    \item Mỗi lần rắn ăn thức ăn, một thức ăn khác sẽ được tạo mới ở một vị trí ngẫu nhiên.
+    \item Vị trí thức ăn được tạo mới sẽ luôn được đảm bảo hợp lệ, không trùng với vị trí của rắn, và trong giới hạn bản đồ.
+    \item Việc ăn thức ăn sẽ đi kèm với tăng số điểm cho người chơi, giữ cho trò chơi tiếp tục.
+\end{itemize}
+
+\subsection*{4. Phát hiện và xử lý va chạm}
+\begin{itemize}
+    \item Mọi vị trí trên bản đồ sẽ được giám sát, để đảm bảo khi có sự va chạm xảy ra giữa rắn và các bức tường, game sẽ kết thúc
+    \item Phát hiện va chạm giữa đầu rắn và cơ thể rắn: nếu đầu rắn va chạm với bất kì một chỗ nào trên cơ thể của rắn, trò chơi sẽ kết thúc
+\end{itemize}
+
+\subsection*{5. Xử lý thao tác từ bàn phím của người chơi}
+\begin{itemize}
+    \item Bắt được các sự kiện khi người chơi nhấn một phím hợp lý ('w', 'a', 's', 'd') thì thay đổi hướng đi của rắn.
+    \item Đảm bảo rắn không bất ngờ di chuyển về hướng ngược lại, dẫn đến tự va chạm với chính nó.
+    \item Game được chạy trong một vòng lặp cho tới khi bắt được một sự kiện khiến game kết thúc, đảm bảo rắn di chuyển mượt mà.
+\end{itemize}
+
+\subsection*{6. Hiển thị trên màn hình}
+\begin{itemize}
+    \item Liên tục cập nhập vị trí của rắn, các bức tường, thức ăn, điểm của người chơi.
+    \item Sử dụng các ký tự cơ bản để biểu thị các bức tường, trái câu, đầu rắn, thân rắn, đuôi rắn.
+    \item Xử lý các thay đổi về trạng thái của game một cách hiệu quả để giảm thiểu độ nhấp nháy, tăng cường hiệu suất xử lý hình ảnh.
+\end{itemize}
+
+
+\section*{Cấu trúc dữ liệu và giải thuật}
+Phần này nhóm đưa ra các cấu trúc dữ liệu chính và thuật toán được sử dụng trong quá trình phát triển game con rắn. \
+Mỗi lựa nhóm đều được nhóm đưa ra và thảo luận để tối ưu về hiệu suất và các tương tác trong game.
+
+\subsection*{Cấu trúc dữ liệu}
+\subsubsection*{1. Dữ liệu cho rắn}
+\begin{itemize}
+    \item \textbf{Cấu trúc dữ liệu:} \texttt{std::vector<std::pair<int, int>>}
+    \item \textbf{Mục đích:} Game cần một cấu trúc dữ liệu để lưu trữ đầu, cơ thể, đuôi rắn. \
+          Cùng với các yêu cầu về việc cơ thể dài ra (lúc ăn thức ăn), kiểm tra xem đầu rắn có đang va chạm với cơ thể rắn hay không.
+          Với việc sử dụng một loại dynamic array, mới các công cụ thêm đầu, thêm đuôi được hỗ trợ sẵn, \
+          và được lưu trữ liên tiếp như một array thông thường trong bộ nhớ, giúp việc xử lý dễ dàng hơn.
+    \item \textbf{Ưu điểm:} Sử dụng \texttt{std::vector} cho phép việc truy cập, di chuyển các phần tử trong array lúc rắn di chuyển, \
+          cùng như lúc ăn thức ăn với tiêu tốn tài nguyên của máy tính tối thiểu.
+    \item \textbf{Sử dụng:} Đàu của rắn được lưu trữ ở vị trí \texttt{[0]}, và khi rắn di chuyển, các đoạn trên cơ thể rắn sẽ dịch chuyển theo để giữ sự liên kết.
+          \begin{footnotesize}
+              \begin{lstlisting}[language=C++]
+    #include <vector>
+    vector<pair<int, int>> snakeBody;
+    \end{lstlisting}
+          \end{footnotesize}
+\end{itemize}
+
+\subsubsection*{2. Thức ăn}
+\begin{itemize}
+    \item \textbf{Cấu trúc dữ liệu:} \texttt{std::pair<int, int>}
+    \item \textbf{Mục đích:} Lưu trữ vị trí của thức ăn dưới dạng $(x, y)$ , cho phép khả năng so sánh với toạ độ của rắn để xử lý tương tác..
+    \item \textbf{Sử dụng:} Thức ăn mới sẽ được tạo ra liên tục ở một vị trí ngẫu nhiên ngay sau khi một thức ăn được rắn hấp thụ.
+\end{itemize}
+
+\subsubsection*{3. Hướng di chuyển}
+\begin{itemize}
+    \item \textbf{Cầu trúc dữ liệu:} \texttt{enum Direction \{UP, DOWN, LEFT, RIGHT\};}
+    \item \textbf{Mục đích:} Theo dõi được hướng di chuyển của rắn, đảm các các hướng di chuyển hợp lệ.
+    \item \textbf{Ràng buộc:} Ngăn chặn các chuyển động ngược nhau để tránh va chạm trục của rắn.
+          \begin{footnotesize}
+              \begin{lstlisting}[language=C++]
+    enum Direction { STOP = 0, LEFT, RIGHT, UP, DOWN };
+    Direction dir;
+    \end{lstlisting}
+          \end{footnotesize}
+\end{itemize}
+
+\subsubsection*{4. Bản đồ}
+\begin{itemize}
+    \item \textbf{Cầu trúc dữ liệu:} \texttt{std::unordered\_set<std::pair<int, int>, hash>}
+    \item \textbf{Mục đích:} Theo dõi tình trạng của bản đồ, các vị trí đã dược rắn hoặc trái cây chiếm dụng.
+    \item \textbf{Sử dụng:} Kiểm tra nếu vị trí của thức ăn được tạo ra có trùng với rắn không, rắn có va chạm với chính nó không.
+          \begin{footnotesize}
+              \begin{lstlisting}[language=C++]
+    #include <algorithm>
+    #include <unordered_set>
+    #include <vector>
+    struct pair_hash {
+        template <class T1, class T2>
+        std::size_t operator()(const std::pair<T1, T2>& pair) const {
+            return Hash
+        }
+    };
+    unordered_set<pair<int, int>, pair_hash> snakeOccupied;
+    \end{lstlisting}
+          \end{footnotesize}
+\end{itemize}
+
+\subsection*{Thuật toán}
+\subsubsection*{1. Rắn di chuyển và dài ra}
+\begin{itemize}
+    \item \textbf{Thuật toán:} Xoay trục của array.
+    \item \textbf{Mô tả:} Cơ thể của rắn sẽ được xoay (dịch chuyển) theo hướng đi.
+    \item \textbf{Cách thực hiện:} Sử dụng \texttt{std::rotate} các phần của rắn sẽ được dịch chuyển theo hướng đi một cách đồng bộ
+          \begin{footnotesize}
+              \begin{lstlisting}[language=C++]
+rotate(snakeBody.rbegin(), snakeBody.rbegin() + 1, snakeBody.rend());
+
+snakeBody[0] = {x, y};
+    \end{lstlisting}
+          \end{footnotesize}
+\end{itemize}
+
+\subsubsection*{2. Phát hiện sự va chạm}
+\begin{itemize}
+    \item \textbf{Va chạm với tường:} Kiểm tra xem đầu của rắn cho va vào tường hay không.
+    \item \textbf{Tự va chạm với chính cơ thể rắn:} Với mỗi bước đi vả hấp thụ thức ăn của rắn, \
+          chúng ta ghi tại toàn bộ vị trí mà cơ thể rắn đang lưu trú, sau đó kiểm tra xem đầu của rắn có di chuyển tới một trong các vị trí đó không.
+    \item \textbf{Độ hiệu quả:} Với việc sử dụng unorderedset để lưu trữ các vị trí của rắn, giúp kiểm tra sự va chạm dễ dàng và hiệu quá.
+          \begin{footnotesize}
+              \begin{lstlisting}[language=C++]
+    rotate(snakeBody.rbegin(), snakeBody.rbegin() + 1, snakeBody.rend());
+    snakeBody[0] = {x, y};
+  \end{lstlisting}
+          \end{footnotesize}
+\end{itemize}
+
+\subsubsection*{3. Tạo thức ăn ngẫu nhiên}
+\begin{itemize}
+    \item \textbf{Thuật toán:} Tạo số ngầu nhiên
+    \item \textbf{Mô tả:} Tạo ra vị trí $(x, y)$ ngẫu nhiên và hợp lệ để tạo trái cây
+    \item \textbf{Ràng buộc:} Đảm bảo thức ăn không được tạo ra tại vị trí mà rắn đang đứng, và không vượt quá phạm vi của bản đồ.
+\end{itemize}
+
+\subsubsection*{4. Xử lý thao tác phím từ người chơi}
+\begin{itemize}
+    \item \textbf{Thuật toán:} Nhận thao tác từ người chơi nhưng không làm ảnh hưởng tới diễn biến của game. Sử dụng \texttt{std::kbhit()} and \texttt{std::getch()}
+    \item \textbf{Mô tả:} Với việc tạo một input buffer, cho phép game được tiến hành mà không bị block \
+          bởi quá trình ghi nhận các thao tác từ người dùng, ngoài ra còn giúp việc xử lý các sự kiện này mượt mà và xuyên suốt.
+    \item \textbf{Thực hiện:} Ghi nhận các thao tác ở các phím điều hướng tới từ người dùng, dựa vào đó thay đổi hướng đi, \
+          trạng thái của rắn mà không gây cản trở các xử lý khác.
+\end{itemize}
+
+\chapter{Quá trình làm việc nhóm}
+% TODO
+
+\chapter{Các kĩ năng mà cách thành viên đã áp dụng và rèn luyện}
+% TODO
+
+\chapter{Đánh giá việc thực hiện hợp đồng nhóm}
+% TODO
+
+\end{document}
