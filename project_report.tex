@@ -14,10 +14,12 @@
 
 \usepackage[utf8]{vietnam}
 \usepackage[utf8]{inputenc}
+\usepackage{enumitem}
 
 \usepackage{helvet}
 \usepackage{courier}
-
+\usepackage{array}
+\usepackage{multirow}
 \usepackage{fourier}   
 \usepackage[T5]{fontenc}
 
@@ -39,6 +41,7 @@
 \tableofcontents
 
 \chapter{Hợp đồng nhóm}
+\label{sec:group_contract}
 Phần này nhóm muốn giới thiệu về nhóm, các thành viên, hợp đồng nhóm.
 
 \section{Tên nhóm}
@@ -50,29 +53,31 @@ Thành viên trong nhóm bao gồm:
     \centering
     \begin{tabular}{|c|l|c|}
         \hline
-        \rule{0pt}{13pt} \textbf{MSSV}                     &
-        \rule{0pt}{13pt} \textbf{Họ và Tên}               &
-        \rule{0pt}{13pt} \textbf{Vai trò}                                                       \\
+        \rule{0pt}{13pt} \textbf{MSSV}      &
+        \rule{0pt}{13pt} \textbf{Họ và Tên} &
+        \rule{0pt}{13pt} \textbf{Vai trò}                                    \\
         \hline
-        24730077 & Ngô Văn Tuấn & Thành viên \\
-        24730067 & Lê Tấn Thành & Thành viên \\
-        24730047 & Nguyễn Thanh Minh & Thành viên \\
-        24730058 & Thiên Phúc Trường & Thành viên \\
-        24730068 & Ngô Thanh Thịnh & Thành viên \\
+        24730047                            & Nguyễn Thanh Minh & Thành viên \\
+        24730058                            & Thiên Phúc Trường & Thành viên \\
+        24730067                            & Lê Tấn Thành      & Thành viên \\
+        24730068                            & Ngô Thanh Thịnh   & Thành viên \\
+        24730077                            & Ngô Văn Tuấn      & Thành viên \\
         \hline
     \end{tabular}
     \caption{Danh sách thành viên và vai trò}
     \label{tab:group_members}
 \end{table}
 
-
 \section{Nhiệm vụ của từng thành viên}
 \begin{itemize}
-    \item 24730077 - Ngô Văn Tuấn: % TODO
-    \item 24730067 - Lê Tấn Thành: % TODO
-    \item 24730047 - Nguyễn Thanh Minh: % TODO
-    \item 24730058 - Thiên Phúc Trường: % TODO
-    \item 24730068 - Ngô Thanh Thịnh: % TODO
+    \item 24730047 - Nguyễn Thanh Minh: Các kỹ năng mà nhóm SV áp dụng khi tham gia đồ án này (\hyperref[sec:used_skills]{chương 6}).
+    \item 24730058 - Thiên Phúc Trường: Giới thiệu và hướng dẫn chơi game (\hyperref[sec:game_tutorial]{chương 3}).
+    \item 24730067 - Lê Tấn Thành: Mô tả quá trình làm việc nhóm (\hyperref[sec:game_tutorial]{chương 5}).
+    \item 24730068 - Ngô Thanh Thịnh: Tài liệu kĩ thuật (\hyperref[sec:technical_detail]{chương 4}).
+    \item 24730077 - Ngô Văn Tuấn: Tài liệu kĩ thuật (\hyperref[sec:technical_detail]{chương 4}), chỉnh sửa và hoàn thiện báo cáo.
+
+    \item Các chương \hyperref[sec:group_contract]{1}, \hyperref[sec:work_space]{2}, \hyperref[sec:member_ratings]{7} \
+          nhóm cùng nhau lên kế hoạch và đánh giá chung.
 \end{itemize}
 
 \section{Tiêu chí và thang điểm / Rubric}
@@ -124,6 +129,7 @@ Thành viên trong nhóm bao gồm:
 \end{table}
 
 \chapter{Không gian làm việc, thảo luận của nhóm}
+\label{sec:work_space}
 
 \section{Trao đổi, phân việc, thảo luận các ý kiến}
 Nhóm sử dụng Slack trong việc trao đổi, thảo luận: \href{https://ss004e11cn1.slack.com/archives/C07T94K918U}{channel ss004-06}
@@ -131,11 +137,11 @@ Nhóm sử dụng Slack trong việc trao đổi, thảo luận: \href{https://s
 Nhóm sử dụng Git để quản lý code, và Github là không gian để cùng nhau làm việc: \href{https://github.com/ThinhNgo96/snake_game}{Github link} \\
 Link sản phẩm: \href{https://github.com/ThinhNgo96/snake_game/releases}{Download Game}
 
-
-
 \chapter{Giới thiệu và hướng dẫn chơi game}
+\label{sec:game_tutorial}
 
 \chapter{Tài liệu kĩ thuật}
+\label{sec:technical_detail}
 \section{Môi trường triển khai game}
 \subsection*{Hệ điều hành}
 \begin{itemize}
@@ -321,13 +327,62 @@ snakeBody[0] = {x, y};
           trạng thái của rắn mà không gây cản trở các xử lý khác.
 \end{itemize}
 
+
 \chapter{Quá trình làm việc nhóm}
+\label{sec:work_process}
 % TODO
 
 \chapter{Các kĩ năng mà cách thành viên đã áp dụng và rèn luyện}
+\label{sec:used_skills}
 % TODO
 
 \chapter{Đánh giá việc thực hiện hợp đồng nhóm}
-% TODO
+\label{sec:member_ratings}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|p{120pt}|p{160pt}|p{80pt}|}
+        \hline
+        \textbf{MSSV}      & \textbf{Họ và Tên} & \textbf{Đánh giá theo tiêu chí} & \textbf{Ghi chú} \\
+        \hline
+        24730047           & Nguyễn Thanh Minh  &
+        Tích cực: Tốt \newline
+        Giao tiếp: Tốt \newline
+        Cộng tác: Tốt \newline
+        Chất lượng công việc: Tốt \newline
+        Chủ động: Xuất sắc &                                                                         \\
+        \hline
+        24730058           & Thiên Phúc Trường  &
+        Tích cực: Tốt \newline
+        Giao tiếp: Tốt \newline
+        Cộng tác: Tốt \newline
+        Chất lượng công việc: Tốt \newline
+        Chủ động: Xuất sắc &                                                                         \\
+        \hline
+        24730067           & Lê Tấn Thành       &
+        Tích cực: Tốt \newline
+        Giao tiếp: Tốt \newline
+        Cộng tác: Tốt \newline
+        Chất lượng công việc: Tốt \newline
+        Chủ động: Xuất sắc &                                                                         \\
+        \hline
+        24730068           & Ngô Thanh Thịnh    &
+        Tích cực: Tốt \newline
+        Giao tiếp: Tốt \newline
+        Cộng tác: Tốt \newline
+        Chất lượng công việc: Tốt \newline
+        Chủ động: Xuất sắc &                                                                         \\
+        \hline
+        24730077           & Ngô Văn Tuấn       &
+        Tích cực: Xuất sắc \newline
+        Giao tiếp: Xuất sắc \newline
+        Cộng tác: Tốt \newline
+        Chất lượng công việc: Tốt \newline
+        Chủ động: Xuất sắc &                                                                         \\
+        \hline
+    \end{tabular}
+    \caption{Đánh giá thành viên theo các tiêu chí}
+    \label{tab:member_ratings}
+\end{table}
 
 \end{document}
