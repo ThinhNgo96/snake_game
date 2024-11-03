@@ -17,13 +17,6 @@ const int speedIncrement = 10;
 enum Direction { STOP = 0, LEFT, RIGHT, UP, DOWN };
 Direction dir;
 
-char fruitC = '\235';
-char headC = '@';
-char bodyC = 'o';
-char tailC = '*';
-char wallC = '=';
-char sideWallC = '|';
-
 int x, y, fruitX, fruitY, score;
 bool gameOver;
 vector<pair<int, int>> snakeBody;
@@ -58,37 +51,40 @@ void drawWalls() {
     // draw the top and bottom walls
     for (int i = 0; i < width + 1; i++) {
         gotoXY(i, 0);
-        cout << wallC;
+        cout << "#";
     }
     for (int i = 0; i < width + 1; i++) {
         gotoXY(i, height + 1);
-        cout << wallC;
+        cout << "#";
     }
 
     // draw side walls
     for (int i = 1; i < height + 1; i++) {
         gotoXY(0, i);
-        cout << sideWallC;
+        cout << "#";
         gotoXY(width, i);
-        cout << sideWallC;
+        cout << "#";
     }
 }
 
 void setup() {
     gameOver = false;
 
-    x = rand() % (width - 2) + 1;
-    y = rand() % (height - 2) + 1;
-
-    // iinitialize fruit position, ensuring it doesn't overlap with the snake's
     do {
-        fruitX = rand() % (width - 2) + 1;
-        fruitY = rand() % (height - 2) + 1;
+        x = rand() % (width - 2) + 1;   // Range from 1 to width-2
+        y = rand() % (height - 2) + 1;  // Range from 1 to height-2
+    } while (x <= 0 || x >= width - 1 || y <= 0 || y >= height - 1);
+
+    // Initialize fruit position, ensuring it doesn't overlap with the snake's
+    // initial position
+    do {
+        fruitX = rand() % (width - 2) + 1;   // Range from 1 to width-2
+        fruitY = rand() % (height - 2) + 1;  // Range from 1 to height-2
     } while (fruitX == x && fruitY == y);
 
     score = 0;
 
-    // start with a snake of length 1
+    // Start with a snake of length 1
     snakeBody.reserve(width * height);
     snakeBody.clear();
     snakeBody.push_back({x, y});
@@ -100,22 +96,22 @@ void setup() {
 void draw() {
     // Draw the fruit
     gotoXY(fruitX, fruitY);
-    cout << fruitC;
+    cout << "@";
 
     // head
     gotoXY(snakeBody[0].first, snakeBody[0].second);
-    cout << headC;
+    cout << "0";
 
     // tail
     if (snakeBody.size() > 1) {
         // replace old head with "o"
         gotoXY(snakeBody[1].first, snakeBody[1].second);
-        cout << bodyC;
+        cout << "o";
 
         int tailX = snakeBody.back().first;
         int tailY = snakeBody.back().second;
         gotoXY(tailX, tailY);
-        cout << tailC;
+        cout << ".";
     }
 
     // print out the score, so users know how good they are
@@ -128,20 +124,26 @@ void input() {
     if (_kbhit()) {
         switch (_getch()) {
             case 'w':
+            case 72: // Mũi tên lên
                 if (dir != DOWN) dir = UP;
                 break;
             case 's':
+            case 80: // Mũi tên xuống
                 if (dir != UP) dir = DOWN;
                 break;
             case 'a':
+            case 75: // Mũi tên trái
                 if (dir != RIGHT) dir = LEFT;
                 break;
             case 'd':
+            case 77: // Mũi tên phải
                 if (dir != LEFT) dir = RIGHT;
                 break;
         }
     }
 }
+
+
 
 void moveSnake(Direction dir) {
     switch (dir) {
@@ -170,8 +172,7 @@ void moveSnake(Direction dir) {
     // the new head of the snake is at (x, y) based on the direction, shifting
     // the rest of the body to the right
     rotate(snakeBody.rbegin(), snakeBody.rbegin() + 1, snakeBody.rend());
-
-    if (snakeOccupied.count({x, y})) {
+    if (snakeOccupied.count({x, y}) > 0) {
         gameOver = true;
     }
 
@@ -179,11 +180,12 @@ void moveSnake(Direction dir) {
     snakeBody[0] = {x, y};
 }
 
+
 void spawnNewFuit() {
     do {
-        fruitX = (rand() % (width - 2)) + 1;  // avoids edge positions
-        fruitY = (rand() % (height - 2)) + 1;
-    } while (snakeOccupied.count({fruitX, fruitY}));
+        fruitX = (rand() % (width - 2)) + 1;   // Avoids edge positions
+        fruitY = (rand() % (height - 2)) + 1;  // Avoids edge positions
+    } while (snakeOccupied.count({fruitX, fruitY}) > 0);
 }
 
 // update game state, check if the game is over.
@@ -229,18 +231,22 @@ int main() {
         int ch = getch();
         switch (ch) {
             case 'w':
+            case 72:
                 dir = UP;
                 validKeyPressed = true;
                 break;
             case 's':
+            case 80:
                 dir = DOWN;
                 validKeyPressed = true;
                 break;
             case 'a':
+            case 75:
                 dir = LEFT;
                 validKeyPressed = true;
                 break;
             case 'd':
+            case 77:
                 dir = RIGHT;
                 validKeyPressed = true;
                 break;
