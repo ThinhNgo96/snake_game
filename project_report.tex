@@ -24,17 +24,53 @@
 \usepackage[T5]{fontenc}
 
 
-\title{ĐỒ ÁN CUỐI KỲ \\ Triển khai và phân tích trò chơi rắn săn mồi}
-\author{Nhóm \\ 4T1M}
-\date{\today}
+% \title{ĐỒ ÁN CUỐI KỲ \\Môn học: Kỹ Năng Nghề Nghiệp \\ Triển khai và phân tích trò chơi rắn săn mồi}
+% \author{Nhóm \\ 4T1M}
 
 \begin{document}
-\maketitle
+\begin{titlepage}
+    \begin{center}
+        {\Large\textbf{Trường Đại học Công nghệ Thông tin - ĐHGQ - HCM}}\\[0.5cm]
+        
+        \textbf{\Huge BÁO CÁO ĐỒ ÁN MÔN HỌC}\\[0.5cm]
+        {\Large\textbf{MÔN: KỸ NĂNG NGHỀ NGHIỆP}}\\[2cm]
+        
+        {\LARGE\textbf{Triển khai và phân tích trò chơi rắn săn mồi}}\\[1.5cm]
+
+        \begin{flushleft}
+            \large
+            \textbf{Giảng viên hướng dẫn: }
+            Nguyễn Văn Toàn
+        \end{flushleft}
+        
+        \begin{flushleft}
+            \large
+            \textbf{Nhóm thực hiện:} Nhóm 04
+        \end{flushleft}
+        
+        \begin{flushleft}
+            \large
+            \textbf{Thành viên:}
+            \begin{itemize}
+                \item 24730047 - Nguyễn Thanh Minh
+                \item 24730058 - Trương Thiên Phúc
+                \item 24730067 - Lê Tấn Thành
+                \item 24730068 - Ngô Thanh Thịnh
+                \item 24730077 - Ngô Văn Tuấn
+            \end{itemize}
+        \end{flushleft}
+        
+        
+        \vfill
+        
+        % Date
+        {\Large\textbf{TP. Hồ Chí Minh, 4 Tháng 11 Năm 2024}}
+        
+    \end{center}
+\end{titlepage}
 
 \begin{abstract}
-    Đồ án này trình bày về thiết kế và cách triển khai trò chơi con rắn (command-line game) viết trên C++, \
-    được thiết kế chủ yếu cho Windows. \
-    Trò chơi kết hợp các yếu tố cơ bản như vẽ tường, tương tác với tường (chướng ngại vật), tăng tốc độ, tương tác với thao tác phím của người chơi,...\
+    Đồ án này trình bày về thiết kế và cách triển khai trò chơi con rắn (command-line game) viết trên C++, được thiết kế chủ yếu cho Windows. Trò chơi kết hợp các yếu tố cơ bản như vẽ tường, tương tác với tường (chướng ngại vật), tăng tốc độ, tương tác với thao tác phím của người chơi,...\
     Đặc biệt nhấn mạnh vào khả năng quản lý bộ nhớ và sử dụng cấu trúc dữ liệu phù hợp để tối ưu việc xử lý các tương tác.
 \end{abstract}
 
@@ -45,7 +81,7 @@
 Phần này nhóm muốn giới thiệu về nhóm, các thành viên, hợp đồng nhóm.
 
 \section{Tên nhóm}
-Tên nhóm: \textbf{4T1M} (\href{https://ss004e11cn1.slack.com/archives/C07T94K918U}{slack channel ss004-06})
+Tên nhóm: \textbf{4T1M} (\href{https://ss004e11cn1.slack.com/archives/C07T94K918U}{nhóm-04-knnn})
 
 \section{Thành viên}
 Thành viên trong nhóm bao gồm:
@@ -55,13 +91,13 @@ Thành viên trong nhóm bao gồm:
         \hline
         \rule{0pt}{13pt} \textbf{MSSV}      &
         \rule{0pt}{13pt} \textbf{Họ và Tên} &
-        \rule{0pt}{13pt} \textbf{Vai trò}                                     \\
+        \rule{0pt}{13pt} \textbf{Vai trò}                                    \\
         \hline
-        24730047                            & Nguyễn Thanh Minh & Thành viên  \\
-        24730058                            & Thiên Phúc Trường & Thành viên  \\
-        24730067                            & Lê Tấn Thành      & Thành viên  \\
-        24730068                            & Ngô Thanh Thịnh   & Thành viên  \\
-        24730077                            & Ngô Văn Tuấn      & Nhóm trưởng \\
+        24730047                            & Nguyễn Thanh Minh & Thành viên \\
+        24730058                            & Trương Thiên Phúc & Thành viên \\
+        24730067                            & Lê Tấn Thành      & Thành viên \\
+        24730068                            & Ngô Thanh Thịnh   & Thành viên \\
+        24730077                            & Ngô Văn Tuấn      & Thành viên \\
         \hline
     \end{tabular}
     \caption{Danh sách thành viên và vai trò}
@@ -71,7 +107,7 @@ Thành viên trong nhóm bao gồm:
 \section{Nhiệm vụ của từng thành viên}
 \begin{itemize}
     \item 24730047 - Nguyễn Thanh Minh: Các kỹ năng mà nhóm SV áp dụng khi tham gia đồ án này (\hyperref[sec:used_skills]{chương 6}).
-    \item 24730058 - Thiên Phúc Trường: Giới thiệu và hướng dẫn chơi game (\hyperref[sec:game_tutorial]{chương 3}).
+    \item 24730058 - Trương Thiên Phúc: Giới thiệu và hướng dẫn chơi game (\hyperref[sec:game_tutorial]{chương 3}).
     \item 24730067 - Lê Tấn Thành: Mô tả quá trình làm việc nhóm (\hyperref[sec:game_tutorial]{chương 5}).
     \item 24730068 - Ngô Thanh Thịnh: Tài liệu kĩ thuật (\hyperref[sec:technical_detail]{chương 4}).
     \item 24730077 - Ngô Văn Tuấn: Tài liệu kĩ thuật (\hyperref[sec:technical_detail]{chương 4}), chỉnh sửa và hoàn thiện báo cáo.
@@ -132,7 +168,7 @@ Thành viên trong nhóm bao gồm:
 \label{sec:work_space}
 
 \section{Trao đổi, phân việc, thảo luận các ý kiến}
-Nhóm sử dụng Slack trong việc trao đổi, thảo luận: \href{https://ss004e11cn1.slack.com/archives/C07T94K918U}{channel ss004-06}
+Nhóm sử dụng Slack trong việc trao đổi, thảo luận: \href{https://ss004e11cn1.slack.com/archives/C07T94K918U}{nhóm-04-knnn}
 \section{Quản lý code, xử lý các xung đột về code}
 Nhóm sử dụng Git để quản lý code, và Github là không gian để cùng nhau làm việc: \href{https://github.com/ThinhNgo96/snake_game}{Github link} \\
 Link sản phẩm: \href{https://github.com/ThinhNgo96/snake_game/releases}{Download Game}
@@ -352,7 +388,7 @@ snakeBody[0] = {x, y};
         Chất lượng công việc: Tốt \newline
         Chủ động: Xuất sắc &                                                                         \\
         \hline
-        24730058           & Thiên Phúc Trường  &
+        24730058           & Trương Thiên Phúc  &
         Tích cực: Tốt \newline
         Giao tiếp: Tốt \newline
         Cộng tác: Tốt \newline
@@ -374,8 +410,8 @@ snakeBody[0] = {x, y};
         Chủ động: Xuất sắc &                                                                         \\
         \hline
         24730077           & Ngô Văn Tuấn       &
-        Tích cực: Xuất sắc \newline
-        Giao tiếp: Xuất sắc \newline
+        Tích cực: Tốt \newline
+        Giao tiếp: Tốt \newline
         Cộng tác: Tốt \newline
         Chất lượng công việc: Tốt \newline
         Chủ động: Xuất sắc &                                                                         \\
