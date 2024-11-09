@@ -1,3 +1,4 @@
+
 #include <conio.h>
 #include <windows.h>
 
@@ -8,8 +9,8 @@
 
 using namespace std;
 
-const int width = 50;
-const int height = 25;
+const int width = 40;
+const int height = 20;
 
 int speed = 150;  // ms
 const int speedIncrement = 10;
@@ -126,17 +127,28 @@ void draw() {
 // capture user input without blocking
 void input() {
     if (_kbhit()) {
-        switch (_getch()) {
+        int ch = _getch();
+
+        // if it's an extended key, get it in one go to avoid delays caused
+        // by waiting for another loop.
+        if (ch == 0 || ch == 224) {
+            ch = _getch();
+        }
+        switch (ch) {
             case 'w':
+            case 72:  // Mũi tên lên
                 if (dir != DOWN) dir = UP;
                 break;
             case 's':
+            case 80:  // Mũi tên xuống
                 if (dir != UP) dir = DOWN;
                 break;
             case 'a':
+            case 75:  // Mũi tên trái
                 if (dir != RIGHT) dir = LEFT;
                 break;
             case 'd':
+            case 77:  // Mũi tên phải
                 if (dir != LEFT) dir = RIGHT;
                 break;
         }
@@ -229,18 +241,22 @@ int main() {
         int ch = getch();
         switch (ch) {
             case 'w':
+            case 72:
                 dir = UP;
                 validKeyPressed = true;
                 break;
             case 's':
+            case 80:
                 dir = DOWN;
                 validKeyPressed = true;
                 break;
             case 'a':
+            case 75:
                 dir = LEFT;
                 validKeyPressed = true;
                 break;
             case 'd':
+            case 77:
                 dir = RIGHT;
                 validKeyPressed = true;
                 break;
