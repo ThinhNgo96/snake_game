@@ -30,7 +30,7 @@
 \begin{document}
 \begin{titlepage}
     \begin{center}
-        {\Large\textbf{Trường Đại học Công nghệ Thông tin - ĐHGQ - HCM}}\\[0.5cm]
+        {\Large\textbf{Trường Đại học Công nghệ Thông tin - ĐHQG - HCM}}\\[0.5cm]
         
         \textbf{\Huge BÁO CÁO ĐỒ ÁN MÔN HỌC}\\[0.5cm]
         {\Large\textbf{MÔN: KỸ NĂNG NGHỀ NGHIỆP}}\\[2cm]
@@ -175,6 +175,74 @@ Link sản phẩm: \href{https://github.com/ThinhNgo96/snake_game/releases}{Down
 
 \chapter{Giới thiệu và hướng dẫn chơi game}
 \label{sec:game_tutorial}
+
+\section{Giới thiệu}
+
+Đây là trò chơi rắn săn mồi (\textit{Snake Game}) viết bằng C++ được thực hiện bởi 5 thành viên của nhóm 4 bao gồm:
+24730047. Nguyễn Thanh Minh, 24730058. Trương Thiên Phúc, 24730067. Lê Tấn Thành, 2473006. Ngô Thanh Thịnh và 24730077. Ngô Văn Tuấn.
+
+Khi chơi game, người chơi sẽ được điều khiển con rắn di chuyển trong một khu vực hình chữ nhật, ăn thức ăn xuất hiện ngẫu nhiên để ghi điểm và làm tăng kích thước của rắn. Mỗi lần ăn thức ăn, tốc độ di chuyển của rắn tăng lên, làm cho trò chơi ngày càng khó hơn. Trò chơi chỉ kết thúc khi rắn chạm vào tường hoặc tự cắn vào chính mình.
+
+\section{Hướng dẫn chơi}
+
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Bắt đầu trò chơi:}
+    \begin{itemize}
+        \item Khi khởi động trò chơi, bạn sẽ thấy khu vực chơi và con rắn ban đầu có kích thước một đơn vị.
+        \item Nhấn một phím điều hướng (W, A, S, D hoặc các phím mũi tên) để bắt đầu di chuyển.
+    \end{itemize}
+    
+    \item \textbf{Điều khiển rắn:}
+    \begin{itemize}
+        \item \textbf{W} hoặc phím mũi tên lên: Di chuyển lên.
+        \item \textbf{S} hoặc phím mũi tên xuống: Di chuyển xuống.
+        \item \textbf{A} hoặc phím mũi tên trái: Di chuyển sang trái.
+        \item \textbf{D} hoặc phím mũi tên phải: Di chuyển sang phải.
+        \item \textbf{Chú ý:} Rắn không thể quay ngược lại, nghĩa là nếu đang di chuyển sang phải, bạn không thể ngay lập tức di chuyển sang trái.
+    \end{itemize}
+    
+    \item \textbf{Mục tiêu trò chơi:}
+    \begin{itemize}
+        \item Di chuyển rắn để ăn thức ăn, được biểu thị bằng ký tự \textbf{@}.
+        \item Mỗi thức ăn ăn được sẽ cộng 10 điểm và tăng độ dài của rắn.
+        \item Khi đạt được điểm cao hơn, tốc độ của trò chơi sẽ tăng lên, làm cho việc điều khiển rắn trở nên khó khăn hơn.
+    \end{itemize}
+        \item \textbf{Kết thúc trò chơi:}
+    \begin{itemize}
+        \item Trò chơi kết thúc khi rắn chạm vào tường hoặc tự cắn vào chính mình.
+        \item Khi trò chơi kết thúc, điểm số cuối cùng của bạn sẽ được hiển thị trên màn hình.
+    \end{itemize}
+    
+    \item \textbf{Thoát trò chơi:}
+    \begin{itemize}
+        \item Sau khi trò chơi kết thúc, bạn có thể nhấn phím \textbf{Q} để thoát khỏi chương trình.
+    \end{itemize}
+\end{enumerate}
+
+Chúc bạn chơi vui vẻ và đạt điểm cao nhất!
+
+\chapter{Tài liệu kĩ thuật}
+\label{sec:technical_detail}
+
+\section{Môi trường triển khai game}
+
+\subsection*{Hệ điều hành}
+\begin{itemize}
+    \item \textbf{Windows}: Sử dụng \texttt{MinGW-w64} cho việc compile.
+\end{itemize}
+
+\subsection*{Ngôn ngữ lập trình}
+\begin{itemize}
+    \item \textbf{C++}: các tương tác và xuất hình ảnh được thực hiện bằng ngôn ngữ C++.
+\end{itemize}
+
+\subsection*{Thư viện}
+\begin{itemize}
+    \item \textbf{conio.h}: Cho phép nhận thao tác phím từ người dùng mà không ảnh hưởng tới main thread.
+    \item \textbf{Windows Console API}: Di chuyển con trỏ ở Windows console.
+    \item \textbf{Standard C++ Libraries}: Bao gồm các thư viện căn bản như \texttt{vector} và \texttt{unordered\_map} để lưu trữ và xử lý dữ liệu của game.
+\end{itemize}
+
 
 \chapter{Tài liệu kĩ thuật}
 \label{sec:technical_detail}
@@ -366,6 +434,27 @@ snakeBody[0] = {x, y};
 
 \chapter{Quá trình làm việc nhóm}
 \label{sec:work_process}
+\subsection*{1. Quá trình thực hiện}
+\begin{itemize}
+    \item \textbf{Quá trình thành lập nhóm:} Khi chuẩn bị kế hoạch làm bài đồ án cuối kỳ ( game Snake) thì số thành viên trong nhóm chỉ có 3 người, là những người đã cùng làm bài tập Job Description : Ngô Thanh Thịnh, Ngô Văn Tuấn và Lê Tấn Thành. Chính vì thế nên nhóm đã tìm thêm thành viên và 2 bạn Nguyễn Thanh Minh, Thiên Phúc Trường đã tham gia vào nhóm. 
+     \item \textbf{Phân chia nhiệm vụ:} Nhóm làm việc với tinh thần thoải mái, luôn ưu tiên nhường nhịn các thành viên khác chọn phần phù hợp với bản thân trước, kết quả là mỗi thành viên đều nhận được nhiệm phụ phù hợp với bản thân nhất.
+      \item \textbf{Bàn luận về các tính năng của game Snake:} Ngô Thanh Thịnh liệt kê ra nhưng điều cần làm để game có thể vận hành trơn tru nhất có thể. Tất nhiên việc này cũng có sự tham gia đóng góp của các thành viên còn lại. Ngoài việc liệt kê nhưng đều cần làm cho game, Ngô Thanh Thịnh cũng hướng dẫn chi tiết từng bước tạo branch, merge,… Điều này giúp cho những bạn non kinh nghiệm có thể dễ dàng thao tác dù chưa tiếp xúc với Git lần nào.
+       \item \textbf{Theo dõi tiến trình:} Trong quá trình làm việc, Ngô Văn Tuấn người luôn là người theo dõi và thúc đẩy các thành viên khác làm công việc của mình, nhờ Tuấn mà team có thể update những thông tin bị sót và vận hành công việc nhóm 1 cách suôn
+       \item \textbf{Review, đóng góp ý kiến:} Ngoài việc kiểm tra kết quả của nhiệm vụ bản thân được giao, các thành viên còn tham khảo và đóng góp kiến cho các phần làm của các thành viên khác, nhờ đó phần làm của các thành viên sẽ trở nên bớt thiếu sót và đầy đầy đủ hơn. Tiêu biểu là bạn Ngô Văn Tuấn và Lê Tấn Thành hay đề xuất về cách trình bày, format của bài báo cáo trên Overleaf.
+
+       \end{itemize}
+
+       
+\subsection*{2. Những khó khăn trong quá trình thực hiện}
+\begin{itemize}
+
+    \item Vì thời gian nhóm thành lập là khá muộn nên thời gian để các thành viên thực hiện nhiệm vụ của mình khá là ngắn, hơn nữa các thành viên là người đang đi làm, có bạn phải OT đến 1, 2 giờ sáng kể cả thứ bảy, chủ nhật nên việc thực hiện nhiệm vụ ,trao đổi, đánh giá task của nhau không mấy suôn sẻ, tuy nhiên các thành viên chủ động hỏi thăm tiến trình task của nhau, khi có thành viên bận việc cá nhân chính đáng thì hỗ trợ.
+    \item Đã có 1 vài thành viên không dể ý yêu cầu tạo tài khoản Git và quy định đặt tên hiển thị có dạng UIT.MSSV, nhưng may mắn đã được bạn Ngô Văn Tuấn nhắc nhở và khắc phục.
+  \item  Overleaf bản dùng thử bị giới hạn chỉ cho phép người edit 1 lần nên gây bất tiện cho việc các bạn luân phiên thay nhau chỉnh sửa quyền edit, vì 1 cá nhân cần edit nội dung bài làm của mình rất nhiều lần, vì thế mất rất nhiều thời gian. Tuy nhiên nhờ bạn Ngô Văn Tuấn đưa ra phương án là copy ra 1 Overleaf riêng rồi chỉnh sửa, sau đó đưa vào bài hoàn chỉnh 1 lượt nên vấn đề đã được giải quyết.
+ \item Việc trao đổi bằng Slack cũng khá là bất tiện, vì các thành viên không phải lúc nào cũng online, đôi khi có những vấn đề cần trao đổi nhưng cần rất nhiều thời gian để phản hồi từ các thành viên khác, nhưng may mắn là tất cả thành viên vẫn cố gắng online để theo dõi tiến trình và đóng góp ý kiến.
+
+  \end{itemize}
+
 % TODO
 
 \chapter{Các kĩ năng mà cách thành viên đã áp dụng và rèn luyện}
