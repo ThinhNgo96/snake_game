@@ -31,7 +31,7 @@ vector<pair<int, int>> snakeBody;
 
 struct pair_hash {
     template <class T1, class T2>
-    std::size_t operator()(const std::pair<T1, T2>& pair) const {
+    std::size_t operator()(const std::pair<T1, T2> &pair) const {
         auto hash1 = std::hash<T1>{}(pair.first);
         auto hash2 = std::hash<T2>{}(pair.second);
         return hash1 + 0x9e3779b9 + (hash2 << 6) + (hash2 >> 2);
@@ -56,23 +56,22 @@ void hideCursor() {
 }
 
 void drawWalls() {
+    // red code
+    cout << "\033[31m";
+
     // draw the top and bottom walls
-    for (int i = 0; i < width + 1; i++) {
-        gotoXY(i, 0);
-        cout << wallC;
-    }
-    for (int i = 0; i < width + 1; i++) {
-        gotoXY(i, height + 1);
-        cout << wallC;
+    for (int i = 0; i <= width; i++) {
+        cout << "\033[0;" << i + 1 << "H" << wallC;
+        cout << "\033[" << height + 2 << ";" << i + 1 << "H" << wallC;
     }
 
     // draw side walls
-    for (int i = 1; i < height + 1; i++) {
-        gotoXY(0, i);
-        cout << sideWallC;
-        gotoXY(width, i);
-        cout << sideWallC;
+    for (int i = 1; i <= height; i++) {
+        cout << "\033[" << i + 1 << ";1H" << sideWallC;
+        cout << "\033[" << i + 1 << ";" << width + 1 << "H" << sideWallC;
     }
+
+    cout << "\033[0m";
 }
 
 void setup() {
@@ -126,30 +125,33 @@ void draw() {
 
 // capture user input without blocking
 void input() {
-    if (_kbhit()) {
+    while (_kbhit()) {  // Keep looping while there's input in the buffer
         int ch = _getch();
 
-        // if it's an extended key, get it in one go to avoid delays caused
-        // by waiting for another loop.
+        // If it's an extended key, handle it
         if (ch == 0 || ch == 224) {
             ch = _getch();
         }
+
         switch (ch) {
             case 'w':
             case 72:  // Mũi tên lên
                 if (dir != DOWN) dir = UP;
-                break;
+                return;
             case 's':
             case 80:  // Mũi tên xuống
                 if (dir != UP) dir = DOWN;
-                break;
+                return;
             case 'a':
             case 75:  // Mũi tên trái
                 if (dir != RIGHT) dir = LEFT;
-                break;
+                return;
             case 'd':
             case 77:  // Mũi tên phải
                 if (dir != LEFT) dir = RIGHT;
+                return;
+            default:
+                // Ignore other keys and continue looping
                 break;
         }
     }
