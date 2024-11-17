@@ -150,6 +150,12 @@ void input() {
             case 77:  // Mũi tên phải
                 if (dir != LEFT) dir = RIGHT;
                 return;
+            case 'p':  // Pause the game
+                while (true) {
+                    if (_kbhit() && _getch() == 'p') {
+                        return;  // Resume the game
+                    }
+                }
             default:
                 // Ignore other keys and continue looping
                 break;
