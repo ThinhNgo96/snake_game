@@ -1,4 +1,3 @@
-
 #include <conio.h>
 #include <windows.h>
 
@@ -55,6 +54,10 @@ void hideCursor() {
     SetConsoleCursorInfo(hConsole, &cursorInfo);
 }
 
+void clearScreen() {
+    system("cls");
+}
+
 void drawWalls() {
     // red code
     cout << "\033[31m";
@@ -76,11 +79,13 @@ void drawWalls() {
 
 void setup() {
     gameOver = false;
+    dir = STOP;
+    speed = 150;  // Reset speed
 
     x = rand() % (width - 2) + 1;
     y = rand() % (height - 2) + 1;
 
-    // iinitialize fruit position, ensuring it doesn't overlap with the snake's
+    // initialize fruit position, ensuring it doesn't overlap with the snake's
     do {
         fruitX = rand() % (width - 2) + 1;
         fruitY = rand() % (height - 2) + 1;
@@ -89,11 +94,12 @@ void setup() {
     score = 0;
 
     // start with a snake of length 1
-    snakeBody.reserve(width * height);
     snakeBody.clear();
+    snakeOccupied.clear();
     snakeBody.push_back({x, y});
     snakeOccupied.insert({x, y});
 
+    clearScreen();  // Clear the screen
     drawWalls();
 }
 
@@ -106,16 +112,10 @@ void draw() {
     gotoXY(snakeBody[0].first, snakeBody[0].second);
     cout << headC;
 
-    // tail
-    if (snakeBody.size() > 1) {
-        // replace old head with "o"
-        gotoXY(snakeBody[1].first, snakeBody[1].second);
-        cout << bodyC;
-
-        int tailX = snakeBody.back().first;
-        int tailY = snakeBody.back().second;
-        gotoXY(tailX, tailY);
-        cout << tailC;
+    // body and tail
+    for (size_t i = 1; i < snakeBody.size(); ++i) {
+        gotoXY(snakeBody[i].first, snakeBody[i].second);
+        cout << ((i == snakeBody.size() - 1) ? tailC : bodyC);
     }
 
     // print out the score, so users know how good they are
@@ -199,7 +199,7 @@ void moveSnake(Direction dir) {
     snakeBody[0] = {x, y};
 }
 
-void spawnNewFuit() {
+void spawnNewFruit() {
     do {
         fruitX = (rand() % (width - 2)) + 1;  // avoids edge positions
         fruitY = (rand() % (height - 2)) + 1;
@@ -218,7 +218,7 @@ void updateGameState() {
     // eat fruit
     if (x == fruitX && y == fruitY) {
         score += 10;
-        spawnNewFuit();
+        spawnNewFruit();
 
         snakeOccupied.insert({x, y});
         snakeBody.push_back({x, y});
@@ -237,16 +237,15 @@ void sleepGameSpeed() {
     }
 }
 
-// Main game loop
-int main() {
+void startGame() {
     hideCursor();
     setup();
     draw();
 
-    // wait for user press the first key to start
+    // wait for user to press the first key to start
     bool validKeyPressed = false;
     while (!validKeyPressed) {
-        int ch = getch();
+        int ch = _getch();
         switch (ch) {
             case 'w':
             case 72:
@@ -279,12 +278,22 @@ int main() {
     }
 
     cout << "Game Over! Your final score was: " << score << endl;
-    cout << "Press 'q' to quit." << endl;
-    while (true) {
-        if (_kbhit() && _getch() == 'q') {
-            break;
-        }
-    }
+}
 
+int main() {
+    char option;
+
+    do {
+        startGame();
+        cout << "Press 'r' to play again or 'q' to quit: ";
+        while (true) {
+            option = _getch();
+            if (option == 'r' || option == 'q') {
+                break;
+            }
+        }
+    } while (option == 'r');
+
+    cout << "Thanks for playing!" << endl;
     return 0;
 }
