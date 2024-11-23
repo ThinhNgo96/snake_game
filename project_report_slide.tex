@@ -1,0 +1,309 @@
+\documentclass{beamer}
+\usepackage[utf8]{vietnam}
+\usepackage[utf8]{inputenc}
+% Theme for the presentation
+\usetheme{Madrid} % Bạn có thể thay đổi sang các theme khác như Copenhagen, CambridgeUS,...
+\usepackage{tikz}
+\usepackage{listings}
+
+\definecolor{myprimarycolor}{RGB}{47, 103, 255}
+\definecolor{customblue}{RGB}{47, 107, 255}
+\setbeamercolor{structure}{fg=myprimarycolor} % Thay đổi màu cấu trúc
+\setbeamercolor{title}{fg=myprimarycolor}     % Tiêu đề
+\setbeamercolor{frametitle}{bg=myprimarycolor, fg=white} % Tiêu đề frame
+\setbeamercolor{itemize item}{fg=myprimarycolor} % Dấu bullet
+\setbeamercolor{itemize subitem}{fg=myprimarycolor} % Sub-bullet
+\setbeamercolor{block title}{bg=myprimarycolor, fg=white} % Khối nội dung
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    filecolor=black,
+    urlcolor=blue,
+    linkbordercolor={1 1 1}
+}
+
+% Thông tin tiêu đề
+\title[Đồ án môn học]{BÁO CÁO ĐỒ ÁN MÔN HỌC}
+\author[Nhóm 4]{Giảng viên hướng dẫn: Nguyễn Văn Toàn\\Nhóm thực hiện: Nhóm 4\\Thành viên:\\ 24730047 - Nguyễn Thanh Minh}
+\date[HCM, 18 tháng 11 năm 2024]{TP.Hồ Chí Minh, 18 tháng 11 năm 2024}
+
+\begin{document}
+
+% Custom Title Page
+\begin{frame}[plain] % [plain] để bỏ header/footer của theme
+    \begin{tikzpicture}[remember picture,overlay]
+        % Background màu gradient
+        % \shade[bottom color=customblue!15,top color=pink!15] (current page.south west) rectangle (current page.north east);
+        
+        % Thêm nội dung tiêu đề
+        \node[anchor=north, align=center] at (current page.north) {
+            \\\textbf{Trường Đại học Công nghệ Thông tin - ĐHQG - HCM}\\[0.1cm]
+            \textbf{\Large BÁO CÁO ĐỒ ÁN MÔN HỌC}\\[0.1cm]
+            \textbf{ Môn: Kỹ Năng Nghề Nghiệp}\\[0.4cm]
+
+            \textbf{\Large Triển khai và phân tích trò chơi rắn săn mồi}\\[1cm]
+        };
+
+        \node[align=left, anchor=west] at ([shift={(0.5cm, -0.5cm)}]current page.west |- current page.center) {
+            \textbf{Giảng viên hướng dẫn: }Nguyễn Văn Toàn\\
+            \textbf{Nhóm thực hiện: }Nhóm 4\\
+            \textbf{Thành viên: }
+            \\ 24730047 - Nguyễn Thanh Minh
+            \\ 24730058 - Trương Thiên Phúc
+            \\ 24730067 - Lê Tấn Thành
+            \\ 24730068 - Ngô Thanh Thịnh
+            \\ 24730077 - Ngô Văn Tuấn
+        };
+        
+        % Thời gian và địa điểm
+        \node[anchor=south, align=center] at (current page.south) {
+            \textbf{\small TP.Hồ Chí Minh, 18 tháng 11 năm 2024}
+        };
+    \end{tikzpicture}
+\end{frame}
+
+% \begin{frame}
+% 	\titlepage
+% \end{frame}
+
+% Trang mục lục
+\begin{frame}{Mục Lục}
+    \tableofcontents
+\end{frame}
+
+\section{Hợp đồng nhóm}
+\begin{frame}{Hợp đồng nhóm}
+\fontsize{10pt}{8pt}\selectfont
+    \textbf{Tên nhóm:} Nhóm 4\\
+    \textbf{Thành viên:}
+    \begin{columns}[T] % Chia đôi cột, căn chỉnh đầu
+        \column{0.5\textwidth}
+        \begin{itemize}
+            \item 24730047 - Nguyễn Thanh Minh
+            \item 24730058 - Trương Thiên Phúc
+            \item 24730067 - Lê Tấn Thành
+        \end{itemize}
+        
+        \column{0.5\textwidth}
+        \begin{itemize}
+            \item 24730068 - Ngô Thanh Thịnh
+            \item 24730077 - Ngô Văn Tuấn
+        \end{itemize}
+    \end{columns}
+    \textbf{\\Nhiệm vụ của thành viên:}
+    \begin{itemize}
+        \item 24730047 - Nguyễn Thanh Minh: Các kỹ năng mà nhóm SV áp dụng khi tham gia đồ án này (chương 6).
+        \item 24730058 - Trương Thiên Phúc: Giới thiệu và hướng dẫn chơi game (chương 3).
+        \item 24730067 - Lê Tấn Thành: Quá trình làm việc nhóm (chương 5).
+        \item 24730068 - Ngô Thanh Thịnh: Tài liệu kĩ thuật (chương 4).
+        \item 24730077 - Ngô Văn Tuấn: Tài liệu kĩ thuật (chương 4), chỉnh sửa và hoàn thiện báo cáo.
+    \end{itemize}
+\end{frame}
+
+\section{Không gian làm việc, thảo luận của nhóm}
+\begin{frame}{Không gian làm việc, thảo luận của nhóm}
+    \begin{itemize}
+        \item Sử dụng Slack để trao đổi và thảo luận: \href{https://ss004e11cn1.slack.com/archives/C07T94K918U}{ nhóm-04-knnn}
+        \item Sử dụng Git để quản lý code, và Github là không gian để cùng nhau làm việc \href{https://github.com/ThinhNgo96/snake_game}{Github link}
+    \end{itemize}
+\end{frame}
+
+\section{Giới thiệu và hướng dẫn chơi game}
+\begin{frame}{Giới thiệu}
+    \begin{itemize}
+        \item Đây là trò chơi rắn săn mồi (\textit{Snake Game}) viết bằng C++ được thực hiện bởi 5 thành viên nhóm 4, bao gồm:
+        \begin{itemize}
+            \item 24730047 - Nguyễn Thanh Minh
+            \item 24730058 - Trương Thiên Phúc
+            \item 24730067 - Lê Tấn Thành
+            \item 24730068 - Ngô Thanh Thịnh
+            \item 24730077 - Ngô Văn Tuấn
+        \end{itemize}
+        \item Khi chơi game, người chơi sẽ được điều khiển con rắn di chuyển trong một khu vực hình chữ nhật, ăn thức ăn xuất hiện ngẫu nhiên để ghi điểm và làm tăng kích thước của rắn. Mỗi lần ăn thức ăn, tốc độ di chuyển của rắn tăng lên, làm cho trò chơi ngày càng khó hơn. Trò chơi chỉ kết thúc khi rắn chạm vào tường hoặc tự cắn vào chính mình.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Hướng dẫn chơi}
+    \textbf{1. Bắt đầu trò chơi:}
+    \begin{itemize}
+        \item Khi khởi động trò chơi, bạn sẽ thấy khu vực chơi và con rắn ban đầu có kích thước một đơn vị.
+        \item Nhấn một phím điều hướng (\texttt{W}, \texttt{A}, \texttt{S}, \texttt{D} hoặc các phím mũi tên) để bắt đầu di chuyển.
+    \end{itemize}
+    \textbf{2. Điều khiển:}
+    \begin{itemize}
+        \item \textbf{Phím mũi tên lên hoặc \texttt{W}}: Di chuyển lên.
+        \item \textbf{Phím mũi tên xuống hoặc \texttt{S}}: Di chuyển xuống.
+        \item \textbf{Phím mũi tên trái hoặc \texttt{A}}: Di chuyển sang trái.
+        \item \textbf{Phím mũi tên phải hoặc \texttt{D}}: Di chuyển sang phải.
+        \item \textbf{Phím \texttt{P}}: Tạm dừng và nhấn lại \texttt{P} để tiếp tục.
+        \item \textbf{Chú ý}: Rắn không thể quay ngược lại, nghĩa là nếu đang di chuyển sang phải, bạn không thể ngay lập tức di chuyển sang trái.
+    \end{itemize}
+\end{frame}
+\begin{frame}{Hướng dẫn chơi}
+    \textbf{3. Mục tiêu trò chơi:}
+    \begin{itemize}
+        \item Di chuyển rắn để ăn thức ăn, được biểu thị bằng ký tự ¥.
+        \item Mỗi thức ăn ăn được sẽ cộng 10 điểm và tăng độ dài của rắn.
+        \item Khi đạt được điểm cao hơn, tốc độ của trò chơi sẽ tăng lên, làm cho việc điều khiển rắn trở nên khó khăn hơn.
+    \end{itemize}
+    \textbf{4. Kết thúc trò chơi:}
+    \begin{itemize}
+        \item Trò chơi kết thúc khi rắn chạm vào tường hoặc tự cắn vào chính mình.
+        \item Khi trò chơi kết thúc, điểm số cuối cùng của bạn sẽ được hiển thị trên màn hình.
+    \end{itemize}
+    \textbf{5.Chơi lại hoặc thoát trò chơi:}
+    \begin{itemize}
+        \item Khi trò chơi kết thúc, bạn có thể nhấn phím \texttt{R} để chơi lại hoặc nhấn phím \texttt{Q} để thoát chương trình.
+    \end{itemize}
+\end{frame}
+
+
+\section{Tài liệu kĩ thuật}
+\begin{frame}[fragile]{Tài liệu kĩ thuật}
+    \textbf{1. Môi trường:}
+    \begin{itemize}
+        \item Hệ điều hành: Windows
+        \item Ngôn ngữ lập trình: C++
+        \item Các thư viện: conio.h, Windows Console API, Standard C++ Libraries
+        \item Công cụ sử dụng: g++ compiler (từ MinGW-w64), gdb, Visual Studio Code.
+    \end{itemize}
+    \textbf{1. Build và chạy game:}
+    \begin{lstlisting}[language=bash]
+        g++ -g main.cpp -o snake.exe
+        ./snake.exe
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Tài liệu kĩ thuật}
+    \textbf{2. Chức năng chính của game:}
+    \begin{itemize}
+        \item Khỏi tạo game: vẽ tường, vẽ rắn, tạo thức ăn.
+        \item Di chuyển rắn, cho rắn ăn.
+        \item Tạo thức ăn.
+        \item Phát hiện và xử lý va chạm.
+        \item Xử lý thao tác từ bàn phím của người chơi.
+        \item Hiện thị hình ảnh trên màn hình.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Tài liệu kĩ thuật}
+    \textbf{3. Cấu trúc dữ liệu:}
+    \begin{itemize}
+        \item Dữ liệu về rắn: \texttt{std::vector<std::pair<int, int>>}
+        \item Thức ăn: \texttt{std::vector}
+        \item Các hướng di chuyển: \texttt{enum Direction \{UP, DOWN, LEFT, RIGHT\};}
+        \item Bản đồ: \texttt{std::unordered\_set<std::pair<int, int>, hash>}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Tài liệu kĩ thuật}
+    \textbf{4. Giải thuật: vòng lặp chính của game}
+    \begin{lstlisting}[language=C++]
+        while (!gameOver) {
+            input();
+            updateGameState();
+            draw();
+            sleepGameSpeed();
+        }
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Tài liệu kĩ thuật}
+    \textbf{4. Giải thuật: xử lý rắn di chuyển}
+    \begin{itemize}
+        \item Xoay trục của array
+\begin{footnotesize}
+              \begin{lstlisting}[language=C++]
+rotate(snakeBody.rbegin(), snakeBody.rbegin() + 1, snakeBody.rend());
+
+snakeBody[0] = {x, y};
+    \end{lstlisting}
+          \end{footnotesize}
+          \item Phát hiện va chạm: kiểm tra phần tử có trong set
+\begin{footnotesize}
+              \begin{lstlisting}[language=C++]
+    if (snakeOccupied.count({x, y})) {
+        gameOver = true;
+    }
+    \end{lstlisting}
+          \end{footnotesize}
+    \end{itemize}
+\end{frame}
+
+\section{Quá trình làm việc nhóm}
+\begin{frame}{Quá trình làm việc nhóm}
+    \textbf{1. Quá trình thực hiện:}
+    \begin{itemize}
+        \item \textbf{Quá trình thành lập nhóm:} Phát triển từ nhóm làm bài tập Job Description và tìm thêm 2 thành viên mới là Nguyễn Thanh Minh và Trương Thiên Phúc.
+        \item \textbf{Phân chia nhiệm vụ:} Luôn đề ra các mục cần làm và các thành viên sẽ chủ động chọn.
+        \item \textbf{Bàn luận về các tính năng của game Snake:} Ngô Thanh Thịnh liệt kê ra các điều cần làm và hướng dẫn từng bước tạo branch, merge,...
+        \item \textbf{Theo dõi tiến trình:} Ngô Văn Tuấn và Trương Thiên Phúc là người theo dõi và thúc đẩy tiến độ công việc.
+        \item \textbf{Review, đóng góp ý kiến:} Các thành viên tham khảo và đóng góp ý kiến đối với phần của thành viên khác.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Quá trình làm việc nhóm}
+    \textbf{2. Những khó khăn trong quá trình thực hiện:}
+    \begin{itemize}
+        \item Nhóm thành lập muộn, thời gian làm nhiệm vụ ngắn. Các thành viên bận rộn công việc, nhiều bạn phải OT muộn kể cả cuối tuần, nhưng vẫn hỗ trợ lẫn nhau khi cần.
+        \item Một số thành viên chưa tuân thủ yêu cầu tạo tài khoản Git và quy định tên, nhưng đã được bạn Ngô Văn Tuấn nhắc nhở và khắc phục.
+        \item Overleaf bản dùng thử bị giới hạn quyền edit, gây bất tiện. Nhờ bạn Ngô Văn Tuấn đề xuất copy ra Overleaf riêng để chỉnh sửa, vấn đề đã được giải quyết.
+        \item Việc trao đổi qua Slack gặp khó khăn do không phải ai cũng online thường xuyên, nhưng các thành viên vẫn cố gắng theo dõi tiến trình và đóng góp ý kiến.
+    
+    \end{itemize}
+\end{frame}
+
+\section{Các kĩ năng mà các thành viên đã áp dụng và rèn luyện}
+\begin{frame}{Các kĩ năng mà các thành viên đã áp dụng và rèn luyện}
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \textbf{Kỹ năng mềm:}
+        \begin{itemize}
+            \item Giao tiếp.
+            \item Làm việc nhóm.
+            \item Giải quyết vấn đề.
+            \item Quản lý thời gian.
+            \item Tư duy phản biện.
+            \item Khả năng thích ứng.
+        \end{itemize}
+        
+        \column{0.5\textwidth}
+        \textbf{Kỹ năng chuyên môn:}
+        \begin{itemize}
+            \item Phân tích thiết kế hệ thống.
+            \item Lập trình.
+            \item Kiểm thử phần mềm.
+            \item Sử dụng các công cụ.
+        \end{itemize}
+    \end{columns}
+\end{frame}
+
+\section{Đánh giá việc thực hiện hợp đồng nhóm}
+\begin{frame}{Đánh giá việc thực hiện hợp đồng nhóm}
+\fontsize{8pt}{9pt}\selectfont
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|l|p{20pt}|p{20pt}|p{20pt}|p{40pt}|c|}
+        \hline
+        \textbf{MSSV}      & \textbf{Họ và Tên} & \textbf{Tích cực} & \textbf{Giao tiếp} & \textbf{Cộng tác} & \textbf{Chất lượng công việc} & \textbf{Chủ động} \\
+        \hline
+        24730047           & Nguyễn Thanh Minh  &
+        Tốt & Tốt & Tốt & Tốt & Xuất sắc                                                                        \\
+        \hline
+        24730058           & Trương Thiên Phúc  & Tốt & Tốt & Tốt & Tốt & Xuất sắc                                                                         \\
+        \hline
+        24730067           & Lê Tấn Thành       & Tốt & Tốt & Tốt & Tốt & Xuất sắc                                                                          \\
+        \hline
+        24730068           & Ngô Thanh Thịnh    & Tốt & Tốt & Tốt & Tốt & Xuất sắc                                                                        \\
+        \hline
+        24730077           & Ngô Văn Tuấn       & Tốt & Tốt & Tốt & Tốt & Xuất sắc                                                                          \\
+        \hline
+    \end{tabular}
+    \caption{Đánh giá thành viên theo các tiêu chí}
+    \label{tab:member_ratings}
+\end{table}
+\end{frame}
+
+\end{document}
