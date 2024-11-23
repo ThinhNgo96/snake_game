@@ -184,11 +184,17 @@ Link sản phẩm: \href{https://github.com/ThinhNgo96/snake_game/releases}{Down
 \label{sec:game_tutorial}
 
 \section{Giới thiệu}
-
-Đây là trò chơi rắn săn mồi (\textit{Snake Game}) viết bằng C++ được thực hiện bởi 5 thành viên của nhóm 4 bao gồm:
-24730047. Nguyễn Thanh Minh, 24730058. Trương Thiên Phúc, 24730067. Lê Tấn Thành, 2473006. Ngô Thanh Thịnh và 24730077. Ngô Văn Tuấn.
-
-Khi chơi game, người chơi sẽ được điều khiển con rắn di chuyển trong một khu vực hình chữ nhật, ăn thức ăn xuất hiện ngẫu nhiên để ghi điểm và làm tăng kích thước của rắn. Mỗi lần ăn thức ăn, tốc độ di chuyển của rắn tăng lên, làm cho trò chơi ngày càng khó hơn. Trò chơi chỉ kết thúc khi rắn chạm vào tường hoặc tự cắn vào chính mình.
+    \begin{itemize}
+        \item Đây là trò chơi rắn săn mồi (\textit{Snake Game}) viết bằng C++ được thực hiện bởi 5 thành viên nhóm 4, bao gồm:
+        \begin{itemize}
+            \item 24730047 - Nguyễn Thanh Minh
+            \item 24730058 - Trương Thiên Phúc
+            \item 24730067 - Lê Tấn Thành
+            \item 24730068 - Ngô Thanh Thịnh
+            \item 24730077 - Ngô Văn Tuấn
+        \end{itemize}
+        \item Khi chơi game, người chơi sẽ được điều khiển con rắn di chuyển trong một khu vực hình chữ nhật, ăn thức ăn xuất hiện ngẫu nhiên để ghi điểm và làm tăng kích thước của rắn. Mỗi lần ăn thức ăn, tốc độ di chuyển của rắn tăng lên, làm cho trò chơi ngày càng khó hơn. Trò chơi chỉ kết thúc khi rắn chạm vào tường hoặc tự cắn vào chính mình.
+    \end{itemize}
 
 \section{Hướng dẫn chơi}
 
@@ -205,12 +211,13 @@ Khi chơi game, người chơi sẽ được điều khiển con rắn di chuy�
         \item \textbf{S} hoặc phím mũi tên xuống: Di chuyển xuống.
         \item \textbf{A} hoặc phím mũi tên trái: Di chuyển sang trái.
         \item \textbf{D} hoặc phím mũi tên phải: Di chuyển sang phải.
+        \item \textbf{Phím \texttt{P}}: Tạm dừng và nhấn lại \texttt{P} để tiếp tục.
         \item \textbf{Chú ý:} Rắn không thể quay ngược lại, nghĩa là nếu đang di chuyển sang phải, bạn không thể ngay lập tức di chuyển sang trái.
     \end{itemize}
     
     \item \textbf{Mục tiêu trò chơi:}
     \begin{itemize}
-        \item Di chuyển rắn để ăn thức ăn, được biểu thị bằng ký tự \textbf{@}.
+         \item Di chuyển rắn để ăn thức ăn, được biểu thị bằng ký tự ¥.
         \item Mỗi thức ăn ăn được sẽ cộng 10 điểm và tăng độ dài của rắn.
         \item Khi đạt được điểm cao hơn, tốc độ của trò chơi sẽ tăng lên, làm cho việc điều khiển rắn trở nên khó khăn hơn.
     \end{itemize}
@@ -220,36 +227,13 @@ Khi chơi game, người chơi sẽ được điều khiển con rắn di chuy�
         \item Khi trò chơi kết thúc, điểm số cuối cùng của bạn sẽ được hiển thị trên màn hình.
     \end{itemize}
     
-    \item \textbf{Thoát trò chơi:}
+    \item \textbf{Chơi lại hoặc thoát trò chơi:}
     \begin{itemize}
-        \item Sau khi trò chơi kết thúc, bạn có thể nhấn phím \textbf{Q} để thoát khỏi chương trình.
+        \item Khi trò chơi kết thúc, bạn có thể nhấn phím \texttt{R} để chơi lại hoặc nhấn phím \texttt{Q} để thoát chương trình.
     \end{itemize}
 \end{enumerate}
 
 Chúc bạn chơi vui vẻ và đạt điểm cao nhất!
-
-\chapter{Tài liệu kĩ thuật}
-\label{sec:technical_detail}
-
-\section{Môi trường triển khai game}
-
-\subsection*{Hệ điều hành}
-\begin{itemize}
-    \item \textbf{Windows}: Sử dụng \texttt{MinGW-w64} cho việc compile.
-\end{itemize}
-
-\subsection*{Ngôn ngữ lập trình}
-\begin{itemize}
-    \item \textbf{C++}: các tương tác và xuất hình ảnh được thực hiện bằng ngôn ngữ C++.
-\end{itemize}
-
-\subsection*{Thư viện}
-\begin{itemize}
-    \item \textbf{conio.h}: Cho phép nhận thao tác phím từ người dùng mà không ảnh hưởng tới main thread.
-    \item \textbf{Windows Console API}: Di chuyển con trỏ ở Windows console.
-    \item \textbf{Standard C++ Libraries}: Bao gồm các thư viện căn bản như \texttt{vector} và \texttt{unordered\_map} để lưu trữ và xử lý dữ liệu của game.
-\end{itemize}
-
 
 \chapter{Tài liệu kĩ thuật}
 \label{sec:technical_detail}
@@ -331,7 +315,7 @@ Game bao gồm các chức năng chính sau đây:
 
 \section*{Cấu trúc dữ liệu và giải thuật}
 Phần này nhóm đưa ra các cấu trúc dữ liệu chính và thuật toán được sử dụng trong quá trình phát triển game con rắn. \
-Mỗi lựa nhóm đều được nhóm đưa ra và thảo luận để tối ưu về hiệu suất và các tương tác trong game.
+Mỗi lựa chọn đều được nhóm đưa ra thảo luận để tối ưu về hiệu suất và các tương tác trong game.
 
 \subsection*{Cấu trúc dữ liệu}
 \subsubsection*{1. Dữ liệu cho rắn}
@@ -445,8 +429,8 @@ snakeBody[0] = {x, y};
 \begin{itemize}
     \item \textbf{Quá trình thành lập nhóm:} Khi chuẩn bị kế hoạch làm bài đồ án cuối kỳ ( game Snake) thì số thành viên trong nhóm chỉ có 3 người, là những người đã cùng làm bài tập Job Description : Ngô Thanh Thịnh, Ngô Văn Tuấn và Lê Tấn Thành. Chính vì thế nên nhóm đã tìm thêm thành viên và 2 bạn Nguyễn Thanh Minh, Thiên Phúc Trường đã tham gia vào nhóm. 
      \item \textbf{Phân chia nhiệm vụ:} Nhóm làm việc với tinh thần thoải mái, luôn ưu tiên nhường nhịn các thành viên khác chọn phần phù hợp với bản thân trước, kết quả là mỗi thành viên đều nhận được nhiệm phụ phù hợp với bản thân nhất.
-      \item \textbf{Bàn luận về các tính năng của game Snake:} Ngô Thanh Thịnh liệt kê ra nhưng điều cần làm để game có thể vận hành trơn tru nhất có thể. Tất nhiên việc này cũng có sự tham gia đóng góp của các thành viên còn lại. Ngoài việc liệt kê nhưng đều cần làm cho game, Ngô Thanh Thịnh cũng hướng dẫn chi tiết từng bước tạo branch, merge,… Điều này giúp cho những bạn non kinh nghiệm có thể dễ dàng thao tác dù chưa tiếp xúc với Git lần nào.
-       \item \textbf{Theo dõi tiến trình:} Trong quá trình làm việc, Ngô Văn Tuấn người luôn là người theo dõi và thúc đẩy các thành viên khác làm công việc của mình, nhờ Tuấn mà team có thể update những thông tin bị sót và vận hành công việc nhóm 1 cách suôn
+      \item \textbf{Bàn luận về các tính năng của game Snake:} Ngô Thanh Thịnh liệt kê ra những điều cần làm để game có thể vận hành trơn tru nhất có thể. Tất nhiên việc này cũng có sự tham gia đóng góp của các thành viên còn lại. Ngoài việc liệt kê nhưng đều cần làm cho game, Ngô Thanh Thịnh cũng hướng dẫn chi tiết từng bước tạo branch, merge,… Điều này giúp cho những bạn non kinh nghiệm có thể dễ dàng thao tác dù chưa tiếp xúc với Git lần nào.
+       \item \textbf{Theo dõi tiến trình:} Trong quá trình làm việc, Ngô Văn Tuấn và Trương Thiên Phúc là người theo dõi và thúc đẩy các thành viên khác làm công việc của mình, nhờ Tuấn mà team có thể update những thông tin bị sót và vận hành công việc nhóm 1 cách suôn
        \item \textbf{Review, đóng góp ý kiến:} Ngoài việc kiểm tra kết quả của nhiệm vụ bản thân được giao, các thành viên còn tham khảo và đóng góp kiến cho các phần làm của các thành viên khác, nhờ đó phần làm của các thành viên sẽ trở nên bớt thiếu sót và đầy đầy đủ hơn. Tiêu biểu là bạn Ngô Văn Tuấn và Lê Tấn Thành hay đề xuất về cách trình bày, format của bài báo cáo trên Overleaf.
 
        \end{itemize}
@@ -454,19 +438,33 @@ snakeBody[0] = {x, y};
        
 \subsection*{2. Những khó khăn trong quá trình thực hiện}
 \begin{itemize}
-
     \item Vì thời gian nhóm thành lập là khá muộn nên thời gian để các thành viên thực hiện nhiệm vụ của mình khá là ngắn, hơn nữa các thành viên là người đang đi làm, có bạn phải OT đến 1, 2 giờ sáng kể cả thứ bảy, chủ nhật nên việc thực hiện nhiệm vụ ,trao đổi, đánh giá task của nhau không mấy suôn sẻ, tuy nhiên các thành viên chủ động hỏi thăm tiến trình task của nhau, khi có thành viên bận việc cá nhân chính đáng thì hỗ trợ.
     \item Đã có 1 vài thành viên không dể ý yêu cầu tạo tài khoản Git và quy định đặt tên hiển thị có dạng UIT.MSSV, nhưng may mắn đã được bạn Ngô Văn Tuấn nhắc nhở và khắc phục.
-  \item  Overleaf bản dùng thử bị giới hạn chỉ cho phép người edit 1 lần nên gây bất tiện cho việc các bạn luân phiên thay nhau chỉnh sửa quyền edit, vì 1 cá nhân cần edit nội dung bài làm của mình rất nhiều lần, vì thế mất rất nhiều thời gian. Tuy nhiên nhờ bạn Ngô Văn Tuấn đưa ra phương án là copy ra 1 Overleaf riêng rồi chỉnh sửa, sau đó đưa vào bài hoàn chỉnh 1 lượt nên vấn đề đã được giải quyết.
- \item Việc trao đổi bằng Slack cũng khá là bất tiện, vì các thành viên không phải lúc nào cũng online, đôi khi có những vấn đề cần trao đổi nhưng cần rất nhiều thời gian để phản hồi từ các thành viên khác, nhưng may mắn là tất cả thành viên vẫn cố gắng online để theo dõi tiến trình và đóng góp ý kiến.
+    \item  Overleaf bản dùng thử bị giới hạn chỉ cho phép người edit 1 lần nên gây bất tiện cho việc các bạn luân phiên thay nhau chỉnh sửa quyền edit, vì 1 cá nhân cần edit nội dung bài làm của mình rất nhiều lần, vì thế mất rất nhiều thời gian. Tuy nhiên nhờ bạn Ngô Văn Tuấn đưa ra phương án là copy ra 1 Overleaf riêng rồi chỉnh sửa, sau đó đưa vào bài hoàn chỉnh 1 lượt nên vấn đề đã được giải quyết.
+    \item Việc trao đổi bằng Slack cũng khá là bất tiện, vì các thành viên không phải lúc nào cũng online, đôi khi có những vấn đề cần trao đổi nhưng cần rất nhiều thời gian để phản hồi từ các thành viên khác, nhưng may mắn là tất cả thành viên vẫn cố gắng online để theo dõi tiến trình và đóng góp ý kiến.
 
-  \end{itemize}
+\end{itemize}
 
 % TODO
 
-\chapter{Các kĩ năng mà cách thành viên đã áp dụng và rèn luyện}
+\chapter{Các kĩ năng mà các thành viên đã áp dụng và rèn luyện}
 \label{sec:used_skills}
-% TODO
+\section{Kỹ năng mềm}
+\begin{itemize}
+    \item \textbf{Giao tiếp:} Nâng cao khả năng diễn đạt ý tưởng và tăng khả năng đàm phán, thuyết phục.
+    \item \textbf{Làm việc nhóm:} Tăng khả năng hợp tác, chủ động, tôn trọng ý kiến người khác.
+    \item \textbf{Giải quyết vấn đề:} Cùng phân tích vấn đề, đưa ra giải pháp tối ưu, thực hiện kế hoạch và theo dõi kế hoạch.
+    \item \textbf{Quản lý thời gian:} Tăng khả năng lập kế hoạch, làm việc dưới áp lực thời gian, giảm khả năng trì hoãn.
+    \item \textbf{Tư duy phản biện:} Chủ động đặt câu hỏi, phân tích thông tin, đưa ra ý kiến khách quan.
+    \item \textbf{Khả năng thích ứng:} Linh hoạt trong các tình huống, thích nghi với môi trường làm việc cùng nhiều người khác nhau.
+\end{itemize}
+\section{Kỹ năng chuyên môn}
+\begin{itemize}
+    \item \textbf{Phân tích thiết kế hệ thống:} Tăng khả năng phân tích yêu cầu, thiết kế kiến trúc hệ thống, xây dựng các cấu trúc dữ liệu.
+    \item \textbf{Lập trình:} Nâng cao khả năng lập trình C++, kỹ năng sử dụng các basic git command và github repository để cùng làm đồng thời nhiều tính năng trên game con rắn , viết code bằng Latex để tạo báo cáo.
+    \item \textbf{Kiểm thử phần mềm:} Tăng khả năng kiểm thử các chức năng và sữa lỗi.
+    \item \textbf{Làm việc với các công cụ:} Tăng khả năng thành thạo các công cụ: Code::Blocks, Visual Studio,...
+\end{itemize}
 
 \chapter{Đánh giá việc thực hiện hợp đồng nhóm}
 \label{sec:member_ratings}
